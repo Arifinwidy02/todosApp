@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos App</title>
+    <%- include('./partial/style.ejs') %> 
+</head>
+<body>
+    <%- include('./partial/navbar.ejs') %> 
+    <div class="container">
+        <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Picture</th>
+                <th scope="col">Content</th>
+                <th scope="col">status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% data.forEach(el=>{ %>
+                <tr>
+                    <td><%= el.id %></td>
+                    <td><%= el.image %></td>
+                    <td><%= el.content %></td>
+                    <td><%= el.status %></td>
+                    <% if(el.status === "complete"){ %>
+                        <td><a href="/uncomplete/<%= el.id %>"><button>uncomplete</button></a><a href="/delete/<%= el.id %>"><button>Delete</button></a></td>
+                    <% } else { %>
+                        <td><a href="/complete/<%= el.id %>"><button>complete</button></a><a href="/delete/<%= el.id %>"><button>Delete</button></a></td>
+                    <% } %> 
+                </tr>
+            <% }) %> 
+        </tbody>
+        </table>
+    </div>
+</body>
+</html>
